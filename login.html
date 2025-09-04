@@ -79,13 +79,21 @@
             background: #218838;
         }
     </style>
+    <script>
+        function handleLogin(event) {
+            event.preventDefault(); // Prevent form from submitting and refreshing the page
+            // Here, you can add authentication logic if needed
+            // After login, redirect to home.html
+            window.location.href = "home.html";
+        }
+    </script>
 </head>
 <body>
     <div class="header">
         <h2>Flipkart Login</h2>
     </div>
     <div class="container">
-        <form>
+        <form onsubmit="handleLogin(event)">
             <div class="input-group">
                 <label for="username">Email or Mobile</label>
                 <input type="text" id="username" name="username" required>
