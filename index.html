@@ -3,312 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flipkart - Online Shopping Site</title>
+    <title>Flipkart Homepage</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        nav {
-            background-color: rgba(0, 0, 0, 0.9);
-            padding: 15px 0;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            margin: 0 10px;
-            display: inline-block;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-        
-        nav a:hover {
-            background-color: #667eea;
-            transform: translateY(-2px);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .header {
-            background-color: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            color: #333;
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        
-        .header p {
-            color: #666;
-            font-size: 1.1em;
-            margin-bottom: 20px;
-        }
-        
-        .note {
-            background-color: #e8f4f8;
-            border-left: 4px solid #667eea;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            color: #333;
-        }
-        
-        .search-box {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-        
-        .search-box input {
-            padding: 12px 20px;
-            border: 2px solid #667eea;
-            border-radius: 5px;
-            font-size: 1em;
-            width: 300px;
-            transition: all 0.3s ease;
-        }
-        
-        .search-box input:focus {
-            outline: none;
-            border-color: #764ba2;
-            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
-        }
-        
-        .search-box button {
-            padding: 12px 30px;
-            background-color: #667eea;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .search-box button:hover {
-            background-color: #764ba2;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        
-        .category-card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .category-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .category-card .icon {
-            font-size: 3em;
-            margin-bottom: 15px;
-        }
-        
-        .category-card h2 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 1.8em;
-        }
-        
-        .category-card p {
-            color: #666;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-        
-        .category-card a {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        
-        .category-card a:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-        
-        .filter-tags {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin: 20px 0;
-        }
-        
-        .filter-tags button {
-            padding: 8px 16px;
-            background-color: #f0f0f0;
-            border: 2px solid #667eea;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .filter-tags button:hover,
-        .filter-tags button.active {
-            background-color: #667eea;
-            color: white;
-        }
-        
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 8px;
-            color: #666;
-            font-size: 0.9em;
-        }
+        body { font-family: Arial, sans-serif; margin: 0; }
+        header { background-color: #2874f0; padding: 10px; color: white; }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .nav-links { display: flex; gap: 15px; }
+        .search-bar { padding: 5px; width: 300px; }
+        .cart { font-size: 1.2em; }
+        .banner { background-color: #ffcc00; padding: 10px; text-align: center; }
+        .featured-products, .categories { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; padding: 20px; }
+        .product, .category { border: 1px solid #ccc; padding: 10px; text-align: center; }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html">🏠 Home</a>
-        <a href="clothes.html">👕 Clothes</a>
-        <a href="electronics.html">📱 Electronics</a>
-    </nav>
-    
-    <div class="container">
-        <div class="header">
-            <h1>🛍️ Welcome to Flipkart</h1>
-            <p>Your One-Stop Shop for Everything!</p>
-            
-            <div class="note">
-                <strong>📍 Note:</strong> This is the Home Page of Flipkart. Navigate through the menu above to explore different product categories, or use the search filter below to find what you're looking for!
+    <header>
+        <nav>
+            <h1>Flipkart</h1>
+            <div class="nav-links">
+                <input type="text" class="search-bar" placeholder="Search for products...">
+                <a class="cart" href="#">🛒 Cart</a>
             </div>
-            
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Search products...">
-                <button onclick="searchProducts()">🔍 Search</button>
-            </div>
-            
-            <div class="filter-tags">
-                <button class="filter-btn" onclick="filterCategory('all')">All Products</button>
-                <button class="filter-btn" onclick="filterCategory('clothes')">Clothes</button>
-                <button class="filter-btn" onclick="filterCategory('electronics')">Electronics</button>
-                <button class="filter-btn" onclick="filterCategory('sale')">On Sale</button>
-            </div>
-        </div>
-        
-        <div class="categories">
-            <div class="category-card" onclick="location.href='clothes.html'">
-                <div class="icon">👕</div>
-                <h2>Clothes & Fashion</h2>
-                <p>Discover the latest fashion trends with our exclusive collection of clothing from top brands. Find your perfect style today!</p>
-                <a href="clothes.html">Explore Clothes →</a>
-            </div>
-            
-            <div class="category-card" onclick="location.href='electronics.html'">
-                <div class="icon">📱</div>
-                <h2>Electronics</h2>
-                <p>Shop cutting-edge gadgets and electronics from renowned brands. Get the best deals on the latest tech products!</p>
-                <a href="electronics.html">Explore Electronics →</a>
-            </div>
-            
-            <div class="category-card">
-                <div class="icon">💎</div>
-                <h2>Coming Soon</h2>
-                <p>We're working on adding more exciting categories to make your shopping experience even better. Stay tuned!</p>
-                <a href="#" style="cursor: not-allowed; opacity: 0.6;">Coming Soon</a>
-            </div>
-        </div>
+        </nav>
+    </header>
+    <div class="banner">
+        <h2>Promotional Banners Here</h2>
     </div>
-    
-    <footer>
-        <p>&copy; 2026 Flipkart Clone. All Rights Reserved. | Your trusted online shopping destination.</p>
-    </footer>
-    
-    <script>
-        function searchProducts() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            
-            if (!searchTerm) {
-                alert('Please enter a search term!');
-                return;
-            }
-            
-            // Search logic based on keywords
-            if (searchTerm.includes('cloth') || searchTerm.includes('shirt') || searchTerm.includes('dress') || searchTerm.includes('pant')) {
-                window.location.href = 'clothes.html';
-            } else if (searchTerm.includes('phone') || searchTerm.includes('mobile') || searchTerm.includes('laptop') || searchTerm.includes('electronic')) {
-                window.location.href = 'electronics.html';
-            } else {
-                alert('Product category not found. Please browse our categories above.');
-            }
-        }
-        
-        function filterCategory(category) {
-            // Update active button
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            // Redirect based on category
-            if (category === 'clothes') {
-                window.location.href = 'clothes.html';
-            } else if (category === 'electronics') {
-                window.location.href = 'electronics.html';
-            } else if (category === 'sale') {
-                alert('Sale items are coming soon!');
-            }
-        }
-        
-        // Allow search on Enter key press
-        document.getElementById('searchInput').addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                searchProducts();
-            }
-        });
-    </script>
+    <section class="featured-products">
+        <h2>Featured Products</h2>
+        <div class="product">Product 1</div>
+        <div class="product">Product 2</div>
+        <div class="product">Product 3</div>
+    </section>
+    <section class="categories">
+        <h2>Categories</h2>
+        <div class="category">Category 1</div>
+        <div class="category">Category 2</div>
+        <div class="category">Category 3</div>
+    </section>
 </body>
 </html>
