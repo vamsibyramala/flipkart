@@ -3,38 +3,592 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clothes Page</title>
+    <title>Flipkart - Clothes & Fashion</title>
     <style>
-        /* Add styles for the filters and page layout */
-        body { font-family: Arial, sans-serif; }
-        .filters { margin: 20px 0; }
-        .filter { margin-right: 10px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #1f4b8f;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFD700;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: #FFD700;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Filters Sidebar */
+        .filters {
+            background: white;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+
+        .filter-section {
+            margin-bottom: 25px;
+        }
+
+        .filter-section h3 {
+            color: #333;
+            font-size: 14px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .filter-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .filter-item input {
+            cursor: pointer;
+        }
+
+        .filter-item label {
+            cursor: pointer;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .price-range {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .price-range input {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+
+        /* Products Section */
+        .products-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sort-bar {
+            background: white;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .sort-bar select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            position: relative;
+            color: white;
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #FF6B6B;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+
+        .product-name {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 8px;
+            height: 40px;
+            overflow: hidden;
+        }
+
+        .product-price {
+            font-size: 16px;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 14px;
+            margin-left: 8px;
+        }
+
+        .rating {
+            font-size: 12px;
+            color: #FFB800;
+            margin-bottom: 10px;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 10px;
+            background-color: #FFD700;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #1f4b8f;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background-color: #FFC700;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1f4b8f;
+            color: white;
+            padding: 30px 20px;
+            margin-top: 40px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .filters {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>Welcome to the Clothes Page</h1>
-    <p>This page allows you to filter clothing items based on categories and search terms.</p>
-    <div class="filters">
-        <input type="text" placeholder="Search..." class="filter" />
-        <select class="filter">
-            <option value="all">All Categories</option>
-            <option value="shirts">Shirts</option>
-            <option value="pants">Pants</option>
-            <option value="accessories">Accessories</option>
-        </select>
-        <button>Apply Filters</button>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">🛍️ Flipkart</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="clothes.html">Clothes</a>
+                <a href="electronics.html">Electronics</a>
+                <a href="#cart">Cart 🛒</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Filters Sidebar -->
+        <aside class="filters">
+            <div class="filter-section">
+                <h3>Price</h3>
+                <div class="price-range">
+                    <input type="number" placeholder="Min" min="0" value="0">
+                    <span>-</span>
+                    <input type="number" placeholder="Max" value="5000">
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h3>Size</h3>
+                <div class="filter-group">
+                    <div class="filter-item">
+                        <input type="checkbox" id="xs" checked>
+                        <label for="xs">XS</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="s">
+                        <label for="s">S</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="m">
+                        <label for="m">M</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="l">
+                        <label for="l">L</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="xl">
+                        <label for="xl">XL</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="xxl">
+                        <label for="xxl">XXL</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h3>Color</h3>
+                <div class="filter-group">
+                    <div class="filter-item">
+                        <input type="checkbox" id="black">
+                        <label for="black">Black</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="white">
+                        <label for="white">White</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="blue">
+                        <label for="blue">Blue</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="red">
+                        <label for="red">Red</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="green">
+                        <label for="green">Green</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h3>Brand</h3>
+                <div class="filter-group">
+                    <div class="filter-item">
+                        <input type="checkbox" id="brand1">
+                        <label for="brand1">Nike</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="brand2">
+                        <label for="brand2">Adidas</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="brand3">
+                        <label for="brand3">Puma</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="brand4">
+                        <label for="brand4">Levis</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="brand5">
+                        <label for="brand5">H&amp;M</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h3>Rating</h3>
+                <div class="filter-group">
+                    <div class="filter-item">
+                        <input type="checkbox" id="rating5">
+                        <label for="rating5">⭐⭐⭐⭐⭐ 5 Star</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="rating4">
+                        <label for="rating4">⭐⭐⭐⭐ 4 &amp; above</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="rating3">
+                        <label for="rating3">⭐⭐⭐ 3 &amp; above</label>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Products Section -->
+        <div class="products-section">
+            <div class="sort-bar">
+                <span>📌 Showing 24 Products</span>
+                <select onchange="sortProducts(this.value)">
+                    <option value="relevance">Sort by Relevance</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="rating">Highest Rated</option>
+                    <option value="newest">Newest First</option>
+                </select>
+            </div>
+
+            <div class="products-grid">
+                <!-- T-Shirt -->
+                <div class="product-card">
+                    <div class="product-image">
+                        👕
+                        <span class="discount-badge">-30%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Premium Cotton T-Shirt</div>
+                        <div class="product-price">₹299 <span class="original-price">₹429</span></div>
+                        <div class="rating">⭐ 4.5 (2,345 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Jeans -->
+                <div class="product-card">
+                    <div class="product-image">
+                        👖
+                        <span class="discount-badge">-40%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Casual Denim Jeans</div>
+                        <div class="product-price">₹699 <span class="original-price">₹1,199</span></div>
+                        <div class="rating">⭐ 4.3 (1,234 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Dress -->
+                <div class="product-card">
+                    <div class="product-image">
+                        👗
+                        <span class="discount-badge">-45%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Designer Dress</div>
+                        <div class="product-price">₹1,299 <span class="original-price">₹2,399</span></div>
+                        <div class="rating">⭐ 4.5 (1,567 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Shirt -->
+                <div class="product-card">
+                    <div class="product-image">
+                        🎽
+                        <span class="discount-badge">-25%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Formal Shirt</div>
+                        <div class="product-price">₹499 <span class="original-price">₹669</span></div>
+                        <div class="rating">⭐ 4.6 (3,456 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Shoes -->
+                <div class="product-card">
+                    <div class="product-image">
+                        👟
+                        <span class="discount-badge">-50%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Sports Shoes</div>
+                        <div class="product-price">₹1,499 <span class="original-price">₹2,999</span></div>
+                        <div class="rating">⭐ 4.4 (2,789 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Jacket -->
+                <div class="product-card">
+                    <div class="product-image">
+                        🧥
+                        <span class="discount-badge">-35%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Winter Jacket</div>
+                        <div class="product-price">₹1,999 <span class="original-price">₹3,099</span></div>
+                        <div class="rating">⭐ 4.7 (4,123 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Hoodie -->
+                <div class="product-card">
+                    <div class="product-image">
+                        🏷️
+                        <span class="discount-badge">-20%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Trendy Hoodie</div>
+                        <div class="product-price">₹899 <span class="original-price">₹1,125</span></div>
+                        <div class="rating">⭐ 4.8 (5,234 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Shorts -->
+                <div class="product-card">
+                    <div class="product-image">
+                        🩳
+                        <span class="discount-badge">-15%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Casual Shorts</div>
+                        <div class="product-price">₹399 <span class="original-price">₹469</span></div>
+                        <div class="rating">⭐ 4.2 (1,876 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Sweater -->
+                <div class="product-card">
+                    <div class="product-image">
+                        🧶
+                        <span class="discount-badge">-32%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Woolen Sweater</div>
+                        <div class="product-price">₹749 <span class="original-price">₹1,105</span></div>
+                        <div class="rating">⭐ 4.6 (3,678 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Skirt -->
+                <div class="product-card">
+                    <div class="product-image">
+                        👘
+                        <span class="discount-badge">-28%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Elegant Skirt</div>
+                        <div class="product-price">₹599 <span class="original-price">₹835</span></div>
+                        <div class="rating">⭐ 4.4 (2,345 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Lehenga -->
+                <div class="product-card">
+                    <div class="product-image">
+                        👯
+                        <span class="discount-badge">-38%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Traditional Lehenga</div>
+                        <div class="product-price">₹2,499 <span class="original-price">₹4,045</span></div>
+                        <div class="rating">⭐ 4.7 (4,567 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Saree -->
+                <div class="product-card">
+                    <div class="product-image">
+                        🎀
+                        <span class="discount-badge">-42%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Silk Saree</div>
+                        <div class="product-price">₹1,799 <span class="original-price">₹3,115</span></div>
+                        <div class="rating">⭐ 4.8 (6,234 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <p>Use the links below to navigate to other sections:</p>
-    <ul>
-        <li><a href="/home.html">Home</a></li>
-        <li><a href="/about.html">About Us</a></li>
-        <li><a href="/contact.html">Contact</a></li>
-    </ul>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Flipkart. All Rights Reserved. | Clothes & Fashion Shopping Made Easy!</p>
+    </footer>
 
     <script>
-        // JavaScript for filter functionality
-        // Add your filter logic here
+        function sortProducts(value) {
+            alert('Sorting by: ' + value);
+        }
+
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                alert('Item added to cart! 🛒');
+            });
+        });
     </script>
 </body>
 </html>

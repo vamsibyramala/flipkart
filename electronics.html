@@ -1,2 +1,642 @@
-<title>Flipkart-Electronics</title>
-<h1>In flipkart we have electronics (International Brands)..!</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipkart - Electronics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #1f4b8f;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFD700;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: #FFD700;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Filters Sidebar */
+        .filters {
+            background: white;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+
+        .filter-section {
+            margin-bottom: 25px;
+        }
+
+        .filter-section h3 {
+            color: #333;
+            font-size: 14px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .filter-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .filter-item input {
+            cursor: pointer;
+        }
+
+        .filter-item label {
+            cursor: pointer;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .price-range {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .price-range input {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+
+        /* Products Section */
+        .products-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sort-bar {
+            background: white;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .sort-bar select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #1f4b8f 0%, #264ba8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            position: relative;
+            color: white;
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #FF6B6B;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .product-info {
+            padding: 15px;
+        }
+
+        .product-name {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 8px;
+            height: 40px;
+            overflow: hidden;
+        }
+
+        .product-price {
+            font-size: 16px;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 14px;
+            margin-left: 8px;
+        }
+
+        .rating {
+            font-size: 12px;
+            color: #FFB800;
+            margin-bottom: 10px;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 10px;
+            background-color: #FFD700;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #1f4b8f;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background-color: #FFC700;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1f4b8f;
+            color: white;
+            padding: 30px 20px;
+            margin-top: 40px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .filters {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">🛍️ Flipkart</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="clothes.html">Clothes</a>
+                <a href="electronics.html">Electronics</a>
+                <a href="#cart">Cart 🛒</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Filters Sidebar -->
+        <aside class="filters">
+            <div class="filter-section">
+                <h3>Price</h3>
+                <div class="price-range">
+                    <input type="number" placeholder="Min" min="0" value="0">
+                    <span>-</span>
+                    <input type="number" placeholder="Max" value="100000">
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h3>Brand</h3>
+                <div class="filter-group">
+                    <div class="filter-item">
+                        <input type="checkbox" id="apple">
+                        <label for="apple">Apple</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="samsung">
+                        <label for="samsung">Samsung</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="xiaomi">
+                        <label for="xiaomi">Xiaomi</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="oneplus">
+                        <label for="oneplus">OnePlus</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="sony">
+                        <label for="sony">Sony</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h3>Category</h3>
+                <div class="filter-group">
+                    <div class="filter-item">
+                        <input type="checkbox" id="phone">
+                        <label for="phone">Mobile Phones</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="laptop">
+                        <label for="laptop">Laptops</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="tablet">
+                        <label for="tablet">Tablets</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="headphones">
+                        <label for="headphones">Headphones</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="smartwatch">
+                        <label for="smartwatch">Smart Watches</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h3>Rating</h3>
+                <div class="filter-group">
+                    <div class="filter-item">
+                        <input type="checkbox" id="rating5">
+                        <label for="rating5">⭐⭐⭐⭐⭐ 5 Star</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="rating4">
+                        <label for="rating4">⭐⭐⭐⭐ 4 & above</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="rating3">
+                        <label for="rating3">⭐⭐⭐ 3 & above</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <h3>Storage</h3>
+                <div class="filter-group">
+                    <div class="filter-item">
+                        <input type="checkbox" id="storage64">
+                        <label for="storage64">64GB</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="storage128">
+                        <label for="storage128">128GB</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="storage256">
+                        <label for="storage256">256GB</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="storage512">
+                        <label for="storage512">512GB</label>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Products Section -->
+        <div class="products-section">
+            <div class="sort-bar">
+                <span>📌 Showing 18 Electronics Products</span>
+                <select onchange="sortProducts(this.value)">
+                    <option value="relevance">Sort by Relevance</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="rating">Highest Rated</option>
+                    <option value="newest">Newest First</option>
+                </select>
+            </div>
+
+            <div class="products-grid">
+                <!-- Smartphone -->
+                <div class="product-card">
+                    <div class="product-image">
+                        📱
+                        <span class="discount-badge">-25%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Smartphone 64GB</div>
+                        <div class="product-price">₹19,999 <span class="original-price">₹26,999</span></div>
+                        <div class="rating">⭐ 4.7 (5,678 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Smart Watch -->
+                <div class="product-card">
+                    <div class="product-image">
+                        ⌚
+                        <span class="discount-badge">-35%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Smart Watch</div>
+                        <div class="product-price">₹4,999 <span class="original-price">₹7,699</span></div>
+                        <div class="rating">⭐ 4.6 (3,456 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Wireless Headphones -->
+                <div class="product-card">
+                    <div class="product-image">
+                        🎧
+                        <span class="discount-badge">-20%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Wireless Headphones</div>
+                        <div class="product-price">₹2,499 <span class="original-price">₹3,299</span></div>
+                        <div class="rating">⭐ 4.8 (4,123 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Laptop -->
+                <div class="product-card">
+                    <div class="product-image">
+                        💻
+                        <span class="discount-badge">-15%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Laptop 8GB RAM</div>
+                        <div class="product-price">₹34,999 <span class="original-price">₹41,299</span></div>
+                        <div class="rating">⭐ 4.7 (6,234 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Power Bank -->
+                <div class="product-card">
+                    <div class="product-image">
+                        🔋
+                        <span class="discount-badge">-22%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Power Bank 20000mAh</div>
+                        <div class="product-price">₹799 <span class="original-price">₹1,025</span></div>
+                        <div class="rating">⭐ 4.9 (8,567 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Gaming Mouse -->
+                <div class="product-card">
+                    <div class="product-image">
+                        🖱️
+                        <span class="discount-badge">-18%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Gaming Mouse</div>
+                        <div class="product-price">₹1,999 <span class="original-price">₹2,449</span></div>
+                        <div class="rating">⭐ 4.7 (4,567 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Tablet -->
+                <div class="product-card">
+                    <div class="product-image">
+                        📲
+                        <span class="discount-badge">-28%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">10" Tablet 128GB</div>
+                        <div class="product-price">₹12,999 <span class="original-price">₹18,099</span></div>
+                        <div class="rating">⭐ 4.5 (3,234 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Webcam -->
+                <div class="product-card">
+                    <div class="product-image">
+                        📹
+                        <span class="discount-badge">-12%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">HD Webcam 1080p</div>
+                        <div class="product-price">₹1,499 <span class="original-price">₹1,705</span></div>
+                        <div class="rating">⭐ 4.6 (2,876 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Monitor -->
+                <div class="product-card">
+                    <div class="product-image">
+                        🖥️
+                        <span class="discount-badge">-18%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">24" 4K Monitor</div>
+                        <div class="product-price">₹9,999 <span class="original-price">₹12,195</span></div>
+                        <div class="rating">⭐ 4.8 (5,432 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Keyboard -->
+                <div class="product-card">
+                    <div class="product-image">
+                        ⌨️
+                        <span class="discount-badge">-24%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Mechanical Keyboard</div>
+                        <div class="product-price">₹3,999 <span class="original-price">₹5,265</span></div>
+                        <div class="rating">⭐ 4.9 (6,789 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Charger -->
+                <div class="product-card">
+                    <div class="product-image">
+                        🔌
+                        <span class="discount-badge">-30%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Fast Charger 65W</div>
+                        <div class="product-price">₹699 <span class="original-price">₹999</span></div>
+                        <div class="rating">⭐ 4.7 (4,123 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- USB Cable -->
+                <div class="product-card">
+                    <div class="product-image">
+                        🔗
+                        <span class="discount-badge">-16%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Premium USB-C Cable</div>
+                        <div class="product-price">₹299 <span class="original-price">₹357</span></div>
+                        <div class="rating">⭐ 4.5 (2,345 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Screen Protector -->
+                <div class="product-card">
+                    <div class="product-image">
+                        🛡️
+                        <span class="discount-badge">-40%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Tempered Glass Screen Protector</div>
+                        <div class="product-price">₹149 <span class="original-price">₹249</span></div>
+                        <div class="rating">⭐ 4.6 (3,567 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Phone Case -->
+                <div class="product-card">
+                    <div class="product-image">
+                        📱
+                        <span class="discount-badge">-33%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Premium Phone Case</div>
+                        <div class="product-price">₹399 <span class="original-price">₹599</span></div>
+                        <div class="rating">⭐ 4.4 (2,234 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Speaker -->
+                <div class="product-card">
+                    <div class="product-image">
+                        🔊
+                        <span class="discount-badge">-26%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Bluetooth Speaker</div>
+                        <div class="product-price">₹1,699 <span class="original-price">₹2,299</span></div>
+                        <div class="rating">⭐ 4.7 (4,876 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+
+                <!-- Smart LED Bulb -->
+                <div class="product-card">
+                    <div class="product-image">
+                        💡
+                        <span class="discount-badge">-19%</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-name">Smart LED Bulb WiFi</div>
+                        <div class="product-price">₹899 <span class="original-price">₹1,111</span></div>
+                        <div class="rating">⭐ 4.8 (5,432 reviews)</div>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Flipkart. All Rights Reserved. | Electronics Shopping Made Easy!</p>
+    </footer>
+
+    <script>
+        function sortProducts(value) {
+            alert('Sorting by: ' + value);
+        }
+
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                alert('Item added to cart! 🛒');
+            });
+        });
+    </script>
+</body>
+</html>
