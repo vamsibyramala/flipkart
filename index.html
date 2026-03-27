@@ -1,18 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flipkart</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flipkart Clone</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f1f3f6;
+}
+
+/* Header */
+.header {
+    background: #2874f0;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.search-box {
+    flex: 1;
+    margin: 0 20px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 2px;
+}
+
+.login-btn {
+    background: white;
+    color: #2874f0;
+    padding: 6px 15px;
+    border-radius: 2px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Categories */
+.categories {
+    display: flex;
+    justify-content: space-around;
+    background: white;
+    padding: 15px 0;
+}
+
+.categories div {
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.categories a {
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+
+.categories a:hover {
+    color: #2874f0;
+}
+
+/* Banner */
+.banner {
+    margin: 10px;
+}
+
+.banner img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+/* Products */
+.products {
+    background: white;
+    margin: 10px;
+    padding: 15px;
+}
+
+.products h2 {
+    margin-bottom: 10px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.product {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.product img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.product p {
+    margin: 5px 0;
+}
+
+.product:hover {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+</style>
 </head>
+
 <body>
-    <nav>
-        <ul>
-            <li><a href="electronics.html">Electronics</a></li>
-            <li><a href="clothes.html">Clothes</a></li>
-        </ul>
-    </nav>
-    <h1>Welcome to Flipkart!</h1>
-    <p>Your one-stop shop for everything!</p>
+
+<!-- Header -->
+<div class="header">
+    <div class="logo">Flipkart</div>
+    <div class="search-box">
+        <input type="text" placeholder="Search for products, brands and more">
+    </div>
+    <div class="login-btn">Login</div>
+</div>
+
+<!-- Categories -->
+<div class="categories">
+    <div><a href="mobiles.html">Mobiles</a></div>
+    <div><a href="electronics.html">Electronics</a></div>
+    <div><a href="fashion.html">Fashion</a></div>
+    <div><a href="home.html">Home</a></div>
+    <div><a href="appliances.html">Appliances</a></div>
+    <div><a href="travel.html">Travel</a></div>
+</div>
+
+<!-- Banner -->
+<div class="banner">
+    <img src="https://via.placeholder.com/1200x300" alt="Banner">
+</div>
+
+<!-- Products Section -->
+<div class="products">
+    <h2>Best of Electronics</h2>
+    <div class="product-grid">
+
+        <div class="product">
+            <img src="https://via.placeholder.com/100">
+            <p>Headphones</p>
+            <p><b>₹999</b></p>
+        </div>
+
+        <div class="product">
+            <img src="https://via.placeholder.com/100">
+            <p>Smart Watch</p>
+            <p><b>₹1999</b></p>
+        </div>
+
+        <div class="product">
+            <img src="https://via.placeholder.com/100">
+            <p>Laptop</p>
+            <p><b>₹49999</b></p>
+        </div>
+
+        <div class="product">
+            <img src="https://via.placeholder.com/100">
+            <p>Camera</p>
+            <p><b>₹29999</b></p>
+        </div>
+
+    </div>
+</div>
+
 </body>
 </html>
