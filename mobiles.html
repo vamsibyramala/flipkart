@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobiles</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f1f3f6;
+}
+
+/* Header */
+.header {
+    background: #2874f0;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.logo a {
+    color: white;
+    text-decoration: none;
+}
+
+.search-box {
+    flex: 1;
+    margin: 0 20px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 2px;
+}
+
+/* Section */
+.section {
+    background: white;
+    margin: 15px;
+    padding: 15px;
+}
+
+.section h2 {
+    margin-bottom: 15px;
+}
+
+/* Products */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+}
+
+.product {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.product img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+}
+
+.product p {
+    margin: 5px 0;
+}
+
+.product:hover {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+</style>
+</head>
+
+<body>
+
+<!-- Header -->
+<div class="header">
+    <div class="logo"><a href="index.html">Flipkart</a></div>
+    <div class="search-box">
+        <input type="text" placeholder="Search for mobiles...">
+    </div>
+</div>
+
+<!-- Mobiles Section -->
+<div class="section">
+    <h2>Top Mobile Phones</h2>
+
+    <div class="product-grid">
+
+        <div class="product">
+            <img src="https://via.placeholder.com/120">
+            <p>iPhone 15</p>
+            <p><b>₹79,999</b></p>
+        </div>
+
+        <div class="product">
+            <img src="https://via.placeholder.com/120">
+            <p>Samsung Galaxy S23</p>
+            <p><b>₹74,999</b></p>
+        </div>
+
+        <div class="product">
+            <img src="https://via.placeholder.com/120">
+            <p>OnePlus 12</p>
+            <p><b>₹64,999</b></p>
+        </div>
+
+        <div class="product">
+            <img src="https://via.placeholder.com/120">
+            <p>Redmi Note 13</p>
+            <p><b>₹15,999</b></p>
+        </div>
+
+        <div class="product">
+            <img src="https://via.placeholder.com/120">
+            <p>Realme Narzo 60</p>
+            <p><b>₹13,499</b></p>
+        </div>
+
+        <div class="product">
+            <img src="https://via.placeholder.com/120">
+            <p>Vivo V29</p>
+            <p><b>₹32,999</b></p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
